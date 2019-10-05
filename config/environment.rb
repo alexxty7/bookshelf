@@ -1,11 +1,18 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require 'hanami/middleware/body_parser'
 require_relative '../lib/bookshelf'
-require_relative '../apps/api/application'
 
 Hanami.configure do
-  mount Api::Application, at: '/'
+  middleware.use Hanami::Middleware::BodyParser, :json
+
+  if Hanami.app?(:web)
+    require_relative '../apps/api/application'
+    mount Api::Application, at: '/'
+  end
 
   model do
     ##
@@ -36,7 +43,7 @@ Hanami.configure do
 
   environment :development do
     # See: https://guides.hanamirb.org/projects/logging
-    logger level: :debug
+    logger level: :info
   end
 
   environment :production do
