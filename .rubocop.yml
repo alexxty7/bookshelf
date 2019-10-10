@@ -1,3 +1,10 @@
+AllCops:
+  Exclude:
+    - apps/orders/proto/*
+    - apps/catalog/proto/*
+    - apps/accounts/proto/*
+    - Rakefile
+
 Style/Documentation:
   Enabled: false
 
@@ -9,3 +16,7 @@ Style/FrozenStringLiteralComment:
     - apps/orders/server.rb
     - apps/catalog/server.rb
     - apps/account/server.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - apps/api/application.rb

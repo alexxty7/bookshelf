@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Api::Views::Graphql::Execute, type: :view do
   let(:exposures) { Hash[format: :html] }
   let(:template)  { Hanami::View::Template.new('apps/api/templates/graphql/execute.html.erb') }

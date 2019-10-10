@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
+gem 'dry-auto_inject'
+gem 'dry-container'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'rake'
