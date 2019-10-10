@@ -3,3 +3,9 @@ Style/Documentation:
 
 Metrics/LineLength:
   Max: 100
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - apps/orders/server.rb
+    - apps/catalog/server.rb
+    - apps/account/server.rb

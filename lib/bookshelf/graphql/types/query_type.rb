@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 require_relative 'base_object'
+require 'apps/orders/proto/orders_services_pb'
 
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :say_hello, String, null: false, description: 'An example field added by the generator'
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-                               description: 'An example field added by the generator'
-    def test_field
-      'Hello World!'
+    def say_hello
+      stub = Orders::OrdersService::Stub.new(ENV.fetch('ORDERS_URL'), :this_channel_is_insecure)
+      stub.say_hello(Orders::HelloRequest.new(name: 'USER')).message
     end
   end
 end

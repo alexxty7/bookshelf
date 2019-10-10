@@ -4,32 +4,20 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require 'hanami/middleware/body_parser'
+
+$LOAD_PATH.unshift(Hanami.root) unless $LOAD_PATH.include?(Hanami.root)
 require_relative '../lib/bookshelf'
 
 Hanami.configure do
   middleware.use Hanami::Middleware::BodyParser, :json
 
-  if Hanami.app?(:web)
+  if Hanami.app?(:api)
     require_relative '../apps/api/application'
     mount Api::Application, at: '/'
   end
 
   model do
-    ##
-    # Database adapter
-    #
-    # Available options:
-    #
-    #  * SQL adapter
-    #    adapter :sql, 'sqlite://db/bookshelf_development.sqlite3'
-    #    adapter :sql, 'postgresql://localhost/bookshelf_development'
-    #    adapter :sql, 'mysql://localhost/bookshelf_development'
-    #
     adapter :sql, ENV.fetch('DATABASE_URL')
-
-    ##
-    # Migrations
-    #
     migrations 'db/migrations'
     schema     'db/schema.sql'
   end
@@ -37,12 +25,10 @@ Hanami.configure do
   mailer do
     root 'lib/bookshelf/mailers'
 
-    # See https://guides.hanamirb.org/mailers/delivery
     delivery :test
   end
 
   environment :development do
-    # See: https://guides.hanamirb.org/projects/logging
     logger level: :info
   end
 

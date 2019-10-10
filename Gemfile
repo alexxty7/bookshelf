@@ -5,6 +5,7 @@ gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
 gem 'graphql'
+gem 'grpc'
 gem 'pg'
 
 group :development do

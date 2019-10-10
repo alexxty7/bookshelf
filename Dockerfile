@@ -19,7 +19,9 @@ WORKDIR $APP_HOME
 
 # Install gems
 COPY Gemfile* $APP_HOME/
-RUN bundle install --jobs 20 --retry 5 \
+RUN CFLAGS="-Wno-cast-function-type" \
+    BUNDLE_FORCE_RUBY_PLATFORM=1 \
+    bundle install --jobs 20 --retry 5 \
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
     && find /usr/local/bundle/gems/ -name "*.o" -delete
