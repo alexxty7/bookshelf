@@ -1,5 +1,5 @@
 syntax = "proto3";
-package accounts;
+package rpc;
 
 message Account {
   string id = 1;

@@ -1,8 +1,8 @@
 AllCops:
   Exclude:
-    - apps/orders/proto/*
-    - apps/catalog/proto/*
-    - apps/accounts/proto/*
+    - apps/orders/rpc/*
+    - apps/catalog/rpc/*
+    - apps/accounts/rpc/*
     - Rakefile
 
 Style/Documentation:
@@ -15,7 +15,7 @@ Style/FrozenStringLiteralComment:
   Exclude:
     - apps/orders/server.rb
     - apps/catalog/server.rb
-    - apps/account/server.rb
+    - apps/accounts/server.rb
 
 Metrics/BlockLength:
   Exclude:

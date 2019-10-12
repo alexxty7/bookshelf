@@ -1,5 +1,5 @@
 syntax = "proto3";
-package catalog;
+package rpc;
 
 message Product {
   string id = 1;

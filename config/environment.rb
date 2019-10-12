@@ -4,8 +4,7 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require 'hanami/middleware/body_parser'
-
-$LOAD_PATH.unshift(Hanami.root) unless $LOAD_PATH.include?(Hanami.root)
+require_relative './load_protos'
 require_relative '../lib/bookshelf'
 
 Hanami.configure do

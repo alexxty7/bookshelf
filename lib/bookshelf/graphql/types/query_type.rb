@@ -7,7 +7,7 @@ module Types
     field :say_hello, String, null: false, description: 'An example field added by the generator'
 
     def say_hello
-      Container['orders_service'].say_hello(Orders::HelloRequest.new(name: 'USER')).message
+      Container['orders_service'].say_hello(Rpc::HelloRequest.new(name: 'USER')).message
     end
   end
 end
