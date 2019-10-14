@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-RSpec.describe TaskRepository, type: :repository do
+RSpec.describe Account, type: :entity do
   # place your tests here
 end

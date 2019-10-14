@@ -4,10 +4,10 @@ require_relative 'base_object'
 
 module Types
   class QueryType < Types::BaseObject
-    field :say_hello, String, null: false, description: 'An example field added by the generator'
+    field :say_hello, String, null: false, description: 'An example field'
 
     def say_hello
-      Container['orders_service'].say_hello(Rpc::HelloRequest.new(name: 'USER')).message
+      'Hello world'
     end
   end
 end

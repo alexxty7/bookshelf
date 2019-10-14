@@ -42,12 +42,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "rpc.GetOrdersForAccountResponse" do
       repeated :orders, :message, 1, "rpc.Order"
     end
-    add_message "rpc.HelloRequest" do
-      optional :name, :string, 1
-    end
-    add_message "rpc.HelloReply" do
-      optional :message, :string, 1
-    end
   end
 end
 
@@ -61,6 +55,4 @@ module Rpc
   GetOrderResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("rpc.GetOrderResponse").msgclass
   GetOrdersForAccountRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("rpc.GetOrdersForAccountRequest").msgclass
   GetOrdersForAccountResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("rpc.GetOrdersForAccountResponse").msgclass
-  HelloRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("rpc.HelloRequest").msgclass
-  HelloReply = Google::Protobuf::DescriptorPool.generated_pool.lookup("rpc.HelloReply").msgclass
 end

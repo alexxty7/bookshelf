@@ -16,7 +16,6 @@ module Rpc
 
       rpc :PostOrder, PostOrderRequest, PostOrderResponse
       rpc :GetOrdersForAccount, GetOrdersForAccountRequest, GetOrdersForAccountResponse
-      rpc :SayHello, HelloRequest, HelloReply
     end
 
     Stub = Service.rpc_stub_class

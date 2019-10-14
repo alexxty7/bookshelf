@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 require_relative 'base_object'
+require_relative '../mutations/create_order_mutation'
 
 module Types
   class MutationType < Types::BaseObject
-    # TODO: remove me
-    field :test_field, String, null: false,
-                               description: 'An example field added by the generator'
-    def test_field
-      'Hello World'
-    end
+    field :create_order, mutation: Mutations::CreateOrderMutation
   end
 end

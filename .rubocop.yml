@@ -4,6 +4,7 @@ AllCops:
     - apps/catalog/rpc/*
     - apps/accounts/rpc/*
     - Rakefile
+    - db/migrations/*
 
 Style/Documentation:
   Enabled: false
