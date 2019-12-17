@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: graphql
+  template:
+    metadata:
+      labels:
+        component: graphql
+    spec:
+      containers:
+        - name: graphql
+          image: alexkatulskiy/bookshelf
+          args: ["bundle", "exec", "hanami", "server", "--host=0.0.0.0"]
+          command: ["./docker-entrypoint.sh"]
+          ports:
+            - containerPort: 2300
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres-service/bookshelf_development
+            - name: HANAMI_APPS
+              value: api
+            - name: ORDERS_URL
+              value: orders-service:50051

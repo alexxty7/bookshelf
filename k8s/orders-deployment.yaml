@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: orders
+  template:
+    metadata:
+      labels:
+        component: orders
+    spec:
+      containers:
+        - name: orders
+          image: alexkatulskiy/bookshelf
+          command: ["bundle", "exec", "apps/orders/server.rb"]
+          ports:
+            - containerPort: 50051
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres-service/bookshelf_development
+
