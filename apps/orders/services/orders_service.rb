@@ -9,7 +9,7 @@ class OrdersService < Rpc::OrdersService::Service
   end
 
   def get_orders_for_account(request, _call)
-    account = AccountRepository.new.find_with_orders(request.account_id)
+    account = AccountRepository.new.find_with_orders(request.accountId)
     Rpc::GetOrdersForAccountResponse.new(
       orders: account.orders.map { |order| OrderResponseBuilder.new(order).call }
     )
