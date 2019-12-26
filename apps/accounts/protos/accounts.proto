@@ -22,10 +22,7 @@ message GetAccountResponse {
   Account account = 1;
 }
 
-message GetAccountsRequest {
-  uint64 skip = 1;
-  uint64 take = 2;
-}
+message GetAccountsRequest {}
 
 message GetAccountsResponse {
   repeated Account accounts = 1;

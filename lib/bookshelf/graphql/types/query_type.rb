@@ -15,6 +15,10 @@ module Types
     field :products, [Types::Product], null: false, description: 'Get products by ids' do
       argument :ids, [String], required: true
     end
+    field :account, Types::Account, null: false, description: 'Get account by id' do
+      argument :id, String, required: true
+    end
+    field :accounts, [Types::Account], null: false, description: 'Get all accounts'
 
     def say_hello
       'Hello world'
@@ -36,6 +40,18 @@ module Types
       Container['catalog_service'].get_products(
         Rpc::GetProductsRequest.new(ids: ids)
       ).products
+    end
+
+    def account(id:)
+      Container['account_service'].get_account(
+        Rpc::GetAccountRequest.new(id: id)
+      ).account
+    end
+
+    def accounts
+      Container['account_service'].get_accounts(
+        Rpc::GetAccountsRequest.new
+      ).accounts
     end
   end
 end

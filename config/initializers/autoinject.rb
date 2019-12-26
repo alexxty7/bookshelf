@@ -2,6 +2,7 @@
 
 require 'orders_services_pb'
 require 'catalog_services_pb'
+require 'accounts_services_pb'
 
 class Container
   extend Dry::Container::Mixin
@@ -12,6 +13,10 @@ class Container
 
   register('catalog_service', memoize: true) do
     Rpc::CatalogService::Stub.new(ENV.fetch('CATALOG_URL'), :this_channel_is_insecure)
+  end
+
+  register('account_service', memoize: true) do
+    Rpc::AccountService::Stub.new(ENV.fetch('ACCOUNTS_URL'), :this_channel_is_insecure)
   end
 end
 

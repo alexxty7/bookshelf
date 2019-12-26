@@ -22,8 +22,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :account, :message, 1, "rpc.Account"
     end
     add_message "rpc.GetAccountsRequest" do
-      optional :skip, :uint64, 1
-      optional :take, :uint64, 2
     end
     add_message "rpc.GetAccountsResponse" do
       repeated :accounts, :message, 1, "rpc.Account"
