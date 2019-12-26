@@ -26,6 +26,7 @@ services:
       - orders
       - catalog
       - accounts
+      - hello
     ports:
       - 2300:2300
     environment:
@@ -33,6 +34,7 @@ services:
       ORDERS_URL: orders:50051
       CATALOG_URL: catalog:50051
       ACCOUNTS_URL: accounts:50051
+      HELLO_URL: hello:50051
       HANAMI_APPS: api
 
   orders:
@@ -58,6 +60,16 @@ services:
   accounts:
     <<: *app
     command: bundle exec apps/accounts/server.rb
+    depends_on:
+      - postgres
+    expose:
+      - 50051
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres/bookshelf_development
+
+  hello:
+    <<: *app
+    command: apps/hello/server
     depends_on:
       - postgres
     expose:

@@ -4,7 +4,9 @@ require_relative 'base_object'
 
 module Types
   class QueryType < Types::BaseObject
-    field :say_hello, String, null: false, description: 'An example field'
+    field :say_hello, String, null: false, description: 'An example field' do
+      argument :name, String, required: true
+    end
     field :account_orders, [Types::Order], null: false, description: 'Get orders by account' do
       argument :account_id, String, required: true
     end
@@ -20,8 +22,10 @@ module Types
     end
     field :accounts, [Types::Account], null: false, description: 'Get all accounts'
 
-    def say_hello
-      'Hello world'
+    def say_hello(name:)
+      Container['hello_service'].say_hello(
+        Rpc::SayHelloRequest.new(name: name)
+      ).message
     end
 
     def account_orders(account_id:)
