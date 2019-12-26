@@ -24,16 +24,28 @@ services:
     depends_on:
       - postgres
       - orders
+      - catalog
     ports:
       - 2300:2300
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres/bookshelf_development
       ORDERS_URL: orders:50051
+      CATALOG_URL: catalog:50051
       HANAMI_APPS: api
 
   orders:
     <<: *app
     command: bundle exec apps/orders/server.rb
+    depends_on:
+      - postgres
+    expose:
+      - 50051
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres/bookshelf_development
+
+  catalog:
+    <<: *app
+    command: bundle exec apps/catalog/server.rb
     depends_on:
       - postgres
     expose:

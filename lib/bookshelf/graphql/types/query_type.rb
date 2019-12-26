@@ -5,8 +5,15 @@ require_relative 'base_object'
 module Types
   class QueryType < Types::BaseObject
     field :say_hello, String, null: false, description: 'An example field'
-    field :account_orders, [Types::Order], null: false, description: 'An account orders' do
+    field :account_orders, [Types::Order], null: false, description: 'Get orders by account' do
       argument :account_id, String, required: true
+    end
+    field :product, Types::Product, null: false, description: 'Get product by id' do
+      argument :id, String, required: true
+    end
+
+    field :products, [Types::Product], null: false, description: 'Get products by ids' do
+      argument :ids, [String], required: true
     end
 
     def say_hello
@@ -14,10 +21,21 @@ module Types
     end
 
     def account_orders(account_id:)
-      response = Container['orders_service'].get_orders_for_account(
+      Container['orders_service'].get_orders_for_account(
         Rpc::GetOrdersForAccountRequest.new(accountId: account_id)
-      )
-      response.orders
+      ).orders
+    end
+
+    def product(id:)
+      Container['catalog_service'].get_product(
+        Rpc::GetProductRequest.new(id: id)
+      ).product
+    end
+
+    def products(ids:)
+      Container['catalog_service'].get_products(
+        Rpc::GetProductsRequest.new(ids: ids)
+      ).products
     end
   end
 end

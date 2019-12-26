@@ -26,10 +26,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :product, :message, 1, "rpc.Product"
     end
     add_message "rpc.GetProductsRequest" do
-      optional :skip, :uint64, 1
-      optional :take, :uint64, 2
       repeated :ids, :string, 3
-      optional :query, :string, 4
     end
     add_message "rpc.GetProductsResponse" do
       repeated :products, :message, 1, "rpc.Product"
