@@ -3,6 +3,7 @@ AllCops:
     - apps/orders/rpc/*
     - apps/catalog/rpc/*
     - apps/accounts/rpc/*
+    - apps/hello/rpc/*
     - Rakefile
     - db/migrations/*
 

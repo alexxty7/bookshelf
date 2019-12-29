@@ -10,7 +10,7 @@ class ProductRepository < Hanami::Repository
     products.join(orders).where(orders[:id].qualified => order_id).map_to(Product).to_a
   end
 
-  def by_id_in_range(*ids)
+  def by_ids(*ids)
     products.where { id.in(*ids) }.to_a
   end
 end

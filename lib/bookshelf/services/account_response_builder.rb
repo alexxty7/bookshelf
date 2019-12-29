@@ -10,7 +10,7 @@ class AccountResponseBuilder
   def call
     Rpc::Account.new(
       id: account.id.to_s,
-      name: account.name,
+      name: account.name
     )
   end
 end

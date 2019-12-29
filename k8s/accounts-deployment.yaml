@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounts-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: accounts
+  template:
+    metadata:
+      labels:
+        component: accounts
+    spec:
+      containers:
+        - name: accounts
+          image: alexkatulskiy/bookshelf
+          command: ["bundle", "exec", "apps/accounts/server.rb"]
+          ports:
+            - containerPort: 50051
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres-service/bookshelf_development
+

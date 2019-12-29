@@ -14,7 +14,7 @@ class CatalogService < Rpc::CatalogService::Service
   end
 
   def get_products(request, _call)
-    products = ProductRepository.new.by_id_in_range(*request.ids)
+    products = ProductRepository.new.by_ids(*request.ids)
     Rpc::GetProductsResponse.new(
       products: products.map { |product| ProductResponseBuilder.new(product).call }
     )

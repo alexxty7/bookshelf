@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: catalog
+  template:
+    metadata:
+      labels:
+        component: catalog
+    spec:
+      containers:
+        - name: catalog
+          image: alexkatulskiy/bookshelf
+          command: ["bundle", "exec", "apps/catalog/server.rb"]
+          ports:
+            - containerPort: 50051
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres-service/bookshelf_development
+

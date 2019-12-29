@@ -20,8 +20,7 @@ class OrderResponseBuilder
   attr_reader :order
 
   def order_products
-    products = ProductRepository.new.all_with_order(order.id)
-    products.map do |product|
+    ProductRepository.new.all_with_order(order.id).map do |product|
       Rpc::Order::OrderProduct.new(
         id: product.id.to_s,
         name: product.name,

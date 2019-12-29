@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: hello
+  template:
+    metadata:
+      labels:
+        component: hello
+    spec:
+      containers:
+        - name: hello
+          image: alexkatulskiy/bookshelf
+          command: ["apps/hello/server"]
+          ports:
+            - containerPort: 50051
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres-service/bookshelf_development
+

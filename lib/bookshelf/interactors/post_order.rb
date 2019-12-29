@@ -4,6 +4,7 @@ require 'hanami/interactor'
 
 class PostOrder
   include Hanami::Interactor
+
   expose :order
 
   def call(request)
